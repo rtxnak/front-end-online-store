@@ -1,15 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-        />
-        <h1 data-testid="home-initial-message">
+        <div>
+          <input
+            type="text"
+          />
+          <Link
+            to="/shoppingcart"
+            data-testid="shopping-cart-button"
+          >
+            <h1>carrinho</h1>
+          </Link>
+        </div>
+        <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+        </h2>
+
       </div>
     );
   }
