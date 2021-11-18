@@ -13,7 +13,7 @@ class Home extends React.Component {
             to="/shoppingcart"
             data-testid="shopping-cart-button"
           >
-            <h1>Carrinho</h1>
+            <h1>carrinho</h1>
           </Link>
         </div>
         <h2 data-testid="home-initial-message">
