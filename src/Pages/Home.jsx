@@ -24,6 +24,17 @@ class Home extends React.Component {
     // console.log(target.value);
   }
 
+  handleClickCategorie = async (random) => {
+    const { searchProducts } = this.state;
+    // console.log(searchProducts);
+    const searchResult = await api
+      .getProductsFromCategoryAndQuery(random, searchProducts);
+    this.setState({
+      products: searchResult,
+      onLoad: false,
+    });
+  }
+
   handleClickSearch = async () => {
     const { searchProducts } = this.state;
     // console.log(searchProducts);
@@ -87,7 +98,6 @@ class Home extends React.Component {
             { console.log(products.results) }
             { onLoad ? empty : products.results.map((product) => (
               <CardP
-                data-testid="product"
                 key={ product.id }
                 arrProduct={ product }
               />
@@ -100,6 +110,7 @@ class Home extends React.Component {
               data-testid="category"
               type="button"
               key={ Categorie.id }
+              onClick={ () => { this.handleClickCategorie(Categorie.id); } }
             >
               { Categorie.name }
             </button>
