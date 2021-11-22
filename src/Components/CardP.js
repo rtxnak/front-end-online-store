@@ -39,3 +39,4 @@ CardP.propTypes = {
 export default CardP;
 
 // transferir informação por rota dinamica =>https://www.youtube.com/watch?v=RUFxmAjbNbg
+// Linha de correcao para pull request;
