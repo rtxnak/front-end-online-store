@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 class ProductDetails extends Component {
   render() {
-    console.log(this.props);
-    const { location: { state: { arrProduct } } } = this.props;
-    const { title, thumbnail, price } = arrProduct;
+    // console.log(this.props);
+    const { location: { state: { product } } } = this.props;
+    const { title, thumbnail, price } = product;
     return (
       <div>
         <div>

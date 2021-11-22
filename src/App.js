@@ -7,16 +7,18 @@ import ProductDetails from './Pages/ProductsDetails';
 function App() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={ Home } />
+      <Route
+        exact
+        path="/"
+        render={ (props) => <Home { ...props } /> }
+        // component={ Home }
+      />
       <Route exact path="/shoppingcart" component={ ShoppingCart } />
       <Route
         exact
         path="/productsdetails/:id"
-        render={ (props) => <ProductDetails { ...props } /> }
-        // render={
-        //   () => (<ProductDetails
-        //   />)
-        // }
+        component={ ProductDetails }
+        // render={ (props) => <ProductDetails { ...props } /> }
       />
     </BrowserRouter>
   );
