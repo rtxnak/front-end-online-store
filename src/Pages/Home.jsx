@@ -12,6 +12,7 @@ class Home extends React.Component {
       searchProducts: '',
       products: [],
       onLoad: true,
+      productsOnCart: [],
     };
   }
 
@@ -19,16 +20,22 @@ class Home extends React.Component {
     this.getCategoriesFunction();
   }
 
+  buyOnClick = (item) => {
+    this.setState((prevState) => ({
+      productsOnCart: [...prevState.productsOnCart, item],
+    }));
+  }
+
   handlechangeSearch = ({ target }) => {
     this.setState({ searchProducts: target.value });
     // console.log(target.value);
   }
 
-  handleClickCategorie = async (random) => {
+  handleClickCategorie = async (id) => {
     const { searchProducts } = this.state;
     // console.log(searchProducts);
     const searchResult = await api
-      .getProductsFromCategoryAndQuery(random, searchProducts);
+      .getProductsFromCategoryAndQuery(id, searchProducts);
     this.setState({
       products: searchResult,
       onLoad: false,
@@ -54,11 +61,18 @@ class Home extends React.Component {
   }
 
   render() {
+    // console.log(this.props);
     const {
       allCategories,
       products,
       onLoad,
+      productsOnCart,
     } = this.state;
+
+    // const {
+    //   productsOnCart,
+    // } = this.props;
+    console.log(productsOnCart);
 
     const empty = (<p>Nenhum Produto Encontrado</p>);
     const { searchProducts } = this.props;
@@ -85,8 +99,11 @@ class Home extends React.Component {
               </button>
             </label>
             <Link
-              to="/shoppingcart"
               data-testid="shopping-cart-button"
+              to={ {
+                pathname: '/shoppingcart',
+                state: { productsOnCart },
+              } }
             >
               <h1>carrinho</h1>
             </Link>
@@ -95,12 +112,29 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
           <div>
-            { console.log(products.results) }
+            {/* { console.log(products.results) } */}
             { onLoad ? empty : products.results.map((product) => (
-              <CardP
-                key={ product.id }
-                arrProduct={ product }
-              />
+              <>
+                <Link
+                  data-testid="product-detail-link"
+                  key={ product.id }
+                  to={ {
+                    pathname: `/productsdetails/${product.id}`,
+                    state: { product },
+                  } }
+                >
+                  <CardP
+                    arrProduct={ product }
+                  />
+                </Link>
+                <button
+                  data-testid="product-add-to-cart"
+                  onClick={ () => { this.buyOnClick(product); } }
+                  type="button"
+                >
+                  Comprar
+                </button>
+              </>
             ))}
           </div>
         </div>
