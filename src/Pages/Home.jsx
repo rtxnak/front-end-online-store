@@ -66,13 +66,13 @@ class Home extends React.Component {
       allCategories,
       products,
       onLoad,
-      productsOnCart,
+      // productsOnCart,
     } = this.state;
 
-    // const {
-    //   productsOnCart,
-    // } = this.props;
-    console.log(productsOnCart);
+    const {
+      buyOnClick,
+    } = this.props;
+    // console.log(productsOnCart);
 
     const empty = (<p>Nenhum Produto Encontrado</p>);
     const { searchProducts } = this.props;
@@ -102,7 +102,7 @@ class Home extends React.Component {
               data-testid="shopping-cart-button"
               to={ {
                 pathname: '/shoppingcart',
-                state: { productsOnCart },
+                // state: { productsOnCart },
               } }
             >
               <h1>carrinho</h1>
@@ -129,7 +129,7 @@ class Home extends React.Component {
                 </Link>
                 <button
                   data-testid="product-add-to-cart"
-                  onClick={ () => { this.buyOnClick(product); } }
+                  onClick={ () => { buyOnClick(product); } }
                   type="button"
                 >
                   Comprar
@@ -157,6 +157,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   searchProducts: PropTypes.string.isRequired,
+  buyOnClick: PropTypes.func.isRequired,
 };
 
 export default Home;

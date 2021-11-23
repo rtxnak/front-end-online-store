@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class ShoppingCart extends React.Component {
   render() {
     // console.log(this.props);
-    const { location: { state: { productsOnCart } } } = this.props;
+    const { productsOnCart } = this.props;
     // { } = productsOnCart
     console.log(productsOnCart);
     const emptyCart = productsOnCart.length === 0;
@@ -43,7 +43,7 @@ class ShoppingCart extends React.Component {
 }
 
 ShoppingCart.propTypes = {
-  location: PropTypes.shape().isRequired,
+  productsOnCart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ShoppingCart;
