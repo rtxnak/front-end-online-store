@@ -12,7 +12,7 @@ class Home extends React.Component {
       searchProducts: '',
       products: [],
       onLoad: true,
-      productsOnCart: [],
+      // productsOnCart: [],
     };
   }
 
@@ -20,11 +20,11 @@ class Home extends React.Component {
     this.getCategoriesFunction();
   }
 
-  buyOnClick = (item) => {
-    this.setState((prevState) => ({
-      productsOnCart: [...prevState.productsOnCart, item],
-    }));
-  }
+  // buyOnClick = (item) => {
+  //   this.setState((prevState) => ({
+  //     productsOnCart: [...prevState.productsOnCart, item],
+  //   }));
+  // }
 
   handlechangeSearch = ({ target }) => {
     this.setState({ searchProducts: target.value });
