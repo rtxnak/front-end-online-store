@@ -17,6 +17,7 @@ class App extends React.Component {
     this.setState((prevState) => ({
       productsOnCart: [...prevState.productsOnCart, item],
     }));
+    console.log(item);
   }
 
   render() {
